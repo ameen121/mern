@@ -29,13 +29,37 @@ export const AdminUser = () => {
 
     return (
         <>
-            {users.length > 0 ? (
-                users.map((curUser, index) => (
-                    <h2 key={index}>{curUser.email}</h2>
-                ))
-            ) : (
-                <p>No users found</p>
-            )}
+        <section className="admin-user-section">
+            <div className="container">
+                <h1>Admin Users Data</h1>
+            </div>
+            <div className="admin-user">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {users.map((curUser, index) => (
+                                <tr key={index}>
+                                    <td>{curUser.username}</td>
+                                    <td>{curUser.email}</td>
+                                    <td>{curUser.phone}</td>
+                                    <td><button>Edit</button></td>
+                                    <td><button>Delete</button></td>
+                                </tr> 
+                       
+                        ))};
+                    </tbody>
+                </table>
+            </div>
+        </section>
+           
         </>
     );
 };
