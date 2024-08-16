@@ -45,12 +45,13 @@ export const Contact = () => {
               },
               body: JSON.stringify(contact)
             });
+              const res_data = await response.json();
             if (response.ok) {
               setContact(defaultContact);
-              const res_data = await response.json();
+
               toast.success("Message Sent successfully");
             }else {
-              toast.error(res_data.extraDetail ? res_data.extraDetail : res_data.message);s
+              toast.error(res_data.extraDetail ? res_data.extraDetail : res_data.message);
                //alert(res_data.message);
            }
             console.log(response);
