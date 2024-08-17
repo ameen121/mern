@@ -1,8 +1,20 @@
-import {NavLink,Outlet} from "react-router-dom";
+import {Navigate, NavLink,Outlet} from "react-router-dom";
 import {FaHome, FaRegListAlt, FaUsers,} from "react-icons/fa";
 import {FaMessage} from "react-icons/fa6";
+import { useAuth } from "../../store/auth";
+import { toast } from "react-toastify";
 
 export const AdminLayout = () => {
+    const {user,isloading} = useAuth();
+    //console.log(user.isAdmin);
+    if(isloading){
+     return <h1>Loading...</h1>   
+    }
+
+    if(!user.isAdmin){
+        toast.info("You are not authorized to access this page");
+        return <Navigate to="/" />
+    }
     return (
        <>
            <header>
@@ -13,7 +25,7 @@ export const AdminLayout = () => {
                                <NavLink to="/admin/users"><FaUsers />Users</NavLink>
                            </li>
                            <li>
-                               <NavLink to="/admin/users"><FaMessage />Contact</NavLink>
+                               <NavLink to="/admin/contacts"><FaMessage />Contact</NavLink>
                            </li>
                            <li>
                                <NavLink to="/services"><FaRegListAlt />Services</NavLink>
